@@ -1,9 +1,26 @@
 import './style.css';
+import { useEffect, useState } from 'react';
+
 export const VybranyPokoj = () => {
+  const [ pokoj, setPokoj ] = useState("Úkryt");
+
+  useEffect(() => {
+    const fetchPokoj = async () => {
+      const response = await fetch('http://localhost:4000/api/rooms');
+      const responseData = await response.json();
+      setPokoj(responseData.data);
+    };
+
+    fetchPokoj();
+  }, []);
+
+
   return (
     <section className="light">
       <div className="container">
-        <h2>Konkretni pokoj</h2>
+        <>
+        <h2>{pokoj.nazev}</h2>
+        </>
         <div className="columns-2">
           <div className="column">
             <img src="img/image1.svg" />
