@@ -2,13 +2,15 @@ import './style.css';
 import { useEffect, useState } from 'react';
 
 export const VybranyPokoj = () => {
-  const [ pokoj, setPokoj ] = useState("Úkryt");
+  const [ pokoj, setPokoj ] = useState("");
+  
 
   useEffect(() => {
     const fetchPokoj = async () => {
       const response = await fetch('http://localhost:4000/api/rooms');
       const responseData = await response.json();
-      setPokoj(responseData.data);
+      setPokoj(responseData.data[0]);
+    
     };
 
     fetchPokoj();
@@ -23,12 +25,9 @@ export const VybranyPokoj = () => {
         </>
         <div className="columns-2">
           <div className="column">
-            <img src="img/image1.svg" />
+            <img src={pokoj.image} />
             <p>
-              Popis pokoje... Lorem ipsum dolor sit, amet consectetur
-              adipisicing elit. Neque accusantium, dolor quisquam doloremque
-              quod nobis temporibus ducimus sapiente consectetur distinctio
-              assumenda, nisi suscipit saepe. Vero.
+              {pokoj.popisek}
             </p>
           </div>
           <form>

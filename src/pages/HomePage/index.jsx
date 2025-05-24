@@ -6,8 +6,11 @@ import { Banner } from '../../components/Banner/banner';
 import { Pokoje } from '../../components/Pokoje/pokoje';
 import { VybranyPokoj } from '../../components/VybranyPokoj/vybranypokoj';
 import { Kontakt } from '../../components/Kontakt/kontakt';
+import { useState } from 'react';
 
 export const HomePage = () => {
+  const [vybranyPokoj, setVybranyPokoj] = useState(null);
+
   return (
     <>
       <Banner />

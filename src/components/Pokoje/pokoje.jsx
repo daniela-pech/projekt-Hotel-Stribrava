@@ -4,8 +4,23 @@ import pokoj2 from './fotky/pokoj02.jpg';
 import pokoj3 from './fotky/pokoj03.jpg';
 import pokoj4 from './fotky/pokoj04.jpg';
 import pokoj5 from './fotky/pokoj05.jpg';
+import { useState, useEffect } from 'react';
 
 export const Pokoje = () => {
+    const [ pokoj, setPokoj ] = useState("");
+    
+    useEffect(() => {
+      const fetchPokoj = async () => {
+        const response = await fetch('http://localhost:4000/api/rooms');
+        const responseData = await response.json();
+        setPokoj(responseData.data[0]);
+      
+      };
+  
+      fetchPokoj();
+    }, []);
+  
+
   return (
     <section className="dark">
       <div className="container">
@@ -46,3 +61,4 @@ export const Pokoje = () => {
     </section>
   );
 };
+
